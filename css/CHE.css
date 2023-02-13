@@ -1,0 +1,112 @@
+@font-face {
+	font-family: 'CHE';
+	src: url(../font/CHE.ttf);
+}
+a img {
+	border: 0;
+}
+
+body {
+	margin: 0;
+}
+#wrap {
+	width: 1280px;
+	margin: 0 auto;
+}
+
+h1 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+#offscreen {
+	display: none;
+}
+form#exedata_outer {
+	display: none;
+}
+form#exedata_outer textarea#exedata {
+	width: 400px;
+	height: 800px;
+	resize: none;
+}
+
+img.banner  {
+	border: 1px solid #444444;
+	box-shadow: 1px 2px 5px rgba(0,0,0,.5);
+}
+a:hover img.banner {
+	position: relative;
+	top: 1px;
+	box-shadow: 1px 1px 5px rgba(0,0,0,.5);
+}
+
+#wrap>header {
+	overflow: hidden;
+}
+.titleContainer {
+	float: left;
+	width: 800px;
+}
+.bannerContainer {
+	float: right;
+}
+h1 {
+	margin: 10px 0;
+}
+
+#information {
+	overflow: hidden;
+}
+#information>* {
+	float: left;
+}
+#machineInformations {
+	overflow: hidden;
+}
+.machineInformation {
+	border: 2px solid #cccccc;
+	border-radius: 2px;
+	background: rgba(0,0,0,0.05);
+	float: left;
+	margin-right: 10px;
+	overflow: hidden;
+}
+.machineInformation .leftColumn {
+	float: left;
+	width: 58px;
+	text-align: center;
+}
+.machineInformation .leftColumn p {
+	margin: 5px 0;
+}
+.machineInformation .rightColumn {
+	float: left;
+	width: 212px;
+}
+.machineInformation .rightColumn p {
+	margin: 5px 0;
+}
+
+#counterNameContainer {
+	overflow: hidden;
+}
+#counterNameContainer h3 {
+	margin: 0;
+}
+#counterNameContainer ul {
+	margin: 0;
+}
+
+#routineContainer {
+	overflow: hidden;
+}
+#routineContainer>p {
+	float: left;
+	margin: 0;
+}
+
+/*
+body.s960 #canvas1 {width: 960px;}
+body.s1600 #canvas1 {width: 1600px;}
+*/
