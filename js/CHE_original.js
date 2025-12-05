@@ -798,7 +798,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function render(machine) {
       console.log(machine);
       // 初期化処理
-      let canvas = document.getElementById('offscreen');
+      let canvas = document.createElement('canvas');
       let context = canvas.getContext('2d');
       
       // チップの描画
@@ -2000,24 +2000,27 @@ document.addEventListener('DOMContentLoaded', function() {
       targetElm.innerHTML = team.owner;
       
       for(let i = 0; i < 3; i++) {
+        let machine = team.machines[i];
+        let isSecret = machine.secretary;
+
         // OKEエンブレム
         targetElm = document.getElementById('OKE' + (i + 1) + 'Emb');
-        targetElm.src = team.machines[i].emblemSrc;
+        targetElm.src = machine.emblemSrc;
         // OKEスナップショット
         targetElm = document.getElementById('OKE' + (i + 1) + 'SS');
-        targetElm.src = team.machines[i].snapshotSrc;
+        targetElm.src = machine.snapshotSrc;
         // OKE名
         targetElm = document.getElementById('OKE' + (i + 1) + 'Name');
-        targetElm.innerHTML = team.machines[i].name === "" ? machineName[team.machines[i].machineType] : team.machines[i].name;
+        targetElm.innerHTML = machine.name === "" ? machineName[machine.machineType] : machine.name;
         // 非公開
         targetElm = document.getElementById('OKE' + (i + 1) + 'Secretary');
-        targetElm.innerHTML = team.machines[i].secretary;
+        targetElm.innerHTML = machine.secretary;
         // 機体タイプ
         targetElm = document.getElementById('OKE' + (i + 1) + 'MachineType');
-        targetElm.innerHTML = machineName[team.machines[i].machineType];
+        targetElm.innerHTML = machineName[machine.machineType];
         // CPU
         targetElm = document.getElementById('OKE' + (i + 1) + 'CpuType');
-        targetElm.innerHTML = cpuName[team.machines[i].cpuType];
+        targetElm.innerHTML = isSecret ? '' : cpuName[machine.cpuType];
       }
     }
     
@@ -2097,7 +2100,7 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // ArrayBufferのoffsetの位置からemblemのsrcを作る関数
     function arrayBuffer2EmblemSrc(buffer, offset) {
-      let canvas = document.getElementById('offscreen');
+      let canvas = document.createElement('canvas');
       let context = canvas.getContext('2d');
       let palette = new Array(16);
       let view;
@@ -2136,7 +2139,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function arrayBuffer2SnapshotSrc(arrayBuffer, offset) {
-      let canvas = document.getElementById('offscreen');
+      let canvas = document.createElement('canvas');
       let context = canvas.getContext('2d');
       let palette = new Array(256);
       
@@ -2211,13 +2214,16 @@ document.addEventListener('DOMContentLoaded', function() {
     };
     // 機体選択
     document.getElementById('machine0').onclick = function() {
-      CHEbase.renderMachine(CHEbase.team.machines[0]);
+      let machine = CHEbase.team.machines[0];
+      CHEbase.renderMachine(machine.secretary ? new Machine() : machine);
     }
     document.getElementById('machine1').onclick = function() {
-      CHEbase.renderMachine(CHEbase.team.machines[1]);
+      let machine = CHEbase.team.machines[1];
+      CHEbase.renderMachine(machine.secretary ? new Machine() : machine);
     }
     document.getElementById('machine2').onclick = function() {
-      CHEbase.renderMachine(CHEbase.team.machines[2]);
+      let machine = CHEbase.team.machines[2];
+      CHEbase.renderMachine(machine.secretary ? new Machine() : machine);
     }
     
     /* ---------- リソースロード時処理 ---------- */
